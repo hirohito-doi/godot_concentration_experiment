@@ -97,3 +97,4 @@ libraries = {
 }
 
 [connection signal="pressed" from="ClickableArea" to="." method="_on_clickable_area_pressed"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

@@ -1,5 +1,3 @@
-extends Script
-
 enum SUIT { SPADE, HEART, DIAMOND, CLUB } 
 
 # トランプを一組作成する
