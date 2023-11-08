@@ -8,9 +8,10 @@ var utils = preload("res://common/utils.gd")
 @onready var deck:Array = utils.create_trump_deck()
 var game_deck_origin:Array
 var game_deck_current:Array
-var obtain_cards:Array
-var obtain_cards_opponent:Array
-var revealing_cards_index:Array
+var obtain_cards:Array = []
+var obtain_cards_opponent:Array = []
+var revealing_cards_index:Array = []
+
 
 func start_game() -> void:
 	# ゲームに使用するカードを決定する
@@ -24,6 +25,19 @@ func start_game() -> void:
 		cardInstance.set_property(index, card.number, card.suit)
 		cardInstance.connect('reversed_card', check_reversed_card)
 		$Field.add_child(cardInstance)
+
+
+func restart_game() -> void:
+	# 初期化が必要なデータの対応
+	obtain_cards = []
+	
+	# 場のカードインスタンスを削除
+	for c in $Field.get_children():
+		$Field.remove_child(c)
+		c.queue_free()
+	
+	# 通常のゲーム開始メソッドを実行する
+	start_game()
 
 func check_reversed_card(index:int) -> void:
 	revealing_cards_index.push_back(index)

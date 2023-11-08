@@ -108,3 +108,5 @@ text = "再挑戦"
 libraries = {
 "": SubResource("AnimationLibrary_k7wu2")
 }
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
