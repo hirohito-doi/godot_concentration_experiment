@@ -39,8 +39,14 @@ columns = 5
 [node name="Result" parent="." instance=ExtResource("4_rhvqd")]
 
 [node name="CheckTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="PutCardTimer" type="Timer" parent="."]
+wait_time = 0.03
 one_shot = true
 
 [connection signal="start_game" from="StartMenu" to="." method="start_game"]
 [connection signal="restart_game" from="Result" to="." method="restart_game"]
 [connection signal="timeout" from="CheckTimer" to="." method="_on_check_timer_timeout"]
+[connection signal="timeout" from="PutCardTimer" to="." method="set_cards"]

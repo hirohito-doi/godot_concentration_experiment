@@ -12,6 +12,8 @@ var obtain_cards:Array = []
 var obtain_cards_opponent:Array = []
 var revealing_cards_index:Array = []
 
+const FIELD_CARD_LIMIT = 20
+
 
 func start_game() -> void:
 	# ゲームに使用するカードを決定する
@@ -19,12 +21,20 @@ func start_game() -> void:
 	game_deck_current = game_deck_origin.duplicate()
 	
 	# 場にカードを並べる
-	for index in game_deck_origin.size():
-		var card = game_deck_origin[index]
-		var cardInstance = card_scene.instantiate()
-		cardInstance.set_property(index, card.number, card.suit)
-		cardInstance.connect('reversed_card', check_reversed_card)
-		$Field.add_child(cardInstance)
+	set_cards()
+		
+func set_cards() -> void:
+	# 場にカードを置く	
+	var index = $Field.get_child_count()
+	var card = game_deck_origin[index]
+	var cardInstance = card_scene.instantiate()
+	cardInstance.set_property(index, card.number, card.suit)
+	cardInstance.connect('reversed_card', check_reversed_card)
+	$Field.add_child(cardInstance)
+	
+	# まだ配置する余裕があればタイマーを作動させる
+	if $Field.get_child_count() != FIELD_CARD_LIMIT:
+		$PutCardTimer.start()
 
 
 func restart_game() -> void:
@@ -42,9 +52,11 @@ func restart_game() -> void:
 func check_reversed_card(index:int) -> void:
 	revealing_cards_index.push_back(index)
 	
-	# めくったカードが1枚目の場合は終了
+	# めくったカードが2枚目の場合は判定時間を設ける
 	if(revealing_cards_index.size() == 2):
 		$CheckTimer.start()
+	else: 
+		Global.can_control = true
 
 
 # 2枚めくった後に一定時間経過後、獲得または元に戻す
@@ -66,7 +78,7 @@ func _on_check_timer_timeout() -> void:
 		obtain_cards.push_back(target_card_1)
 		
 		# 終了判定
-		if obtain_cards.size() == 2:
+		if obtain_cards.size() == FIELD_CARD_LIMIT:
 			$Result.show_result()
 	else: 
 		# 一致していなければ元に戻す
@@ -75,3 +87,5 @@ func _on_check_timer_timeout() -> void:
 	
 	# 初期化
 	revealing_cards_index = []
+	#クリック可能に戻す
+	Global.can_control = true

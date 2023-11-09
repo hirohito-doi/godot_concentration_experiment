@@ -16,17 +16,20 @@ func set_property(new_index:int, new_number:int, new_suit:String) -> void:
 
 
 func undo_card() -> void:
-	$AnimationPlayer.stop()
+	$AnimationPlayer.play("bad")
 	$ClickableArea.disabled = false
 
 
 func hide_card() -> void:
-	$Face.visible = false
-	$Back.visible = false
+	$AnimationPlayer.play("good")
 	$ClickableArea.visible = false
 
 
 func _on_clickable_area_pressed() -> void:
+	if !Global.can_control:
+		return
+	
+	Global.can_control = false
 	# カードをめくる
 	$ClickableArea.disabled = true
 	$AnimationPlayer.play("reverse")
