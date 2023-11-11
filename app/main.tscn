@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://wb0nc63je6ay"]
+[gd_scene load_steps=6 format=3 uid="uid://wb0nc63je6ay"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_6snme"]
 [ext_resource type="PackedScene" uid="uid://5mn8xxs0vakp" path="res://card.tscn" id="1_f16yg"]
+[ext_resource type="PackedScene" uid="uid://crlcg66sy3nm8" path="res://game_info.tscn" id="3_7b4mj"]
 [ext_resource type="PackedScene" uid="uid://b1aqwhm3dsdwl" path="res://ui/start_menu.tscn" id="3_gbwy1"]
 [ext_resource type="PackedScene" uid="uid://dqxk4n4tk1ftu" path="res://ui/result.tscn" id="4_rhvqd"]
 
@@ -15,7 +16,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.411765, 0.611765, 0.462745, 1)
+color = Color(0.454902, 0.611765, 0.317647, 1)
 
 [node name="Field" type="GridContainer" parent="."]
 custom_minimum_size = Vector2(500, 400)
@@ -33,6 +34,9 @@ grow_vertical = 2
 theme_override_constants/h_separation = 25
 theme_override_constants/v_separation = 20
 columns = 5
+
+[node name="GameInfo" parent="." instance=ExtResource("3_7b4mj")]
+visible = false
 
 [node name="StartMenu" parent="." instance=ExtResource("3_gbwy1")]
 

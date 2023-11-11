@@ -14,6 +14,17 @@ func set_property(new_index:int, new_number:int, new_suit:String) -> void:
 	$Face/Number.text = str(number)
 	$Face/Suit.text = suit
 
+# 手札に入ってきた場合の設定
+func set_for_hand(new_number:int, new_suit:String) -> void:
+	$ClickableArea.visible = false
+	$Back.visible = false
+	
+	number = new_number
+	suit = new_suit
+	
+	$Face/Number.text = str(number)
+	$Face/Suit.text = suit
+	
 
 func undo_card() -> void:
 	$AnimationPlayer.play("bad")

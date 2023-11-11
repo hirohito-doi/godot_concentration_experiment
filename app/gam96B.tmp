@@ -1,0 +1,51 @@
+[gd_scene load_steps=2 format=3 uid="uid://crlcg66sy3nm8"]
+
+[ext_resource type="Script" path="res://game_info.gd" id="1_6322w"]
+
+[node name="GameInfo" type="CanvasLayer"]
+script = ExtResource("1_6322w")
+
+[node name="CurrentTurnLabel" type="Label" parent="."]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 188.0
+offset_bottom = 52.0
+theme_override_font_sizes/font_size = 24
+text = "あなたのターンです"
+
+[node name="PalyerInfoContainer" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+
+[node name="Name" type="Label" parent="PalyerInfoContainer"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = -72.0
+offset_right = 95.0
+offset_bottom = -30.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 28
+text = "あなた"
+
+[node name="Score" type="Label" parent="PalyerInfoContainer"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = -160.0
+offset_right = 64.0
+offset_bottom = -137.0
+text = "20"
+
+[node name="OpponentInfoContainer" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0

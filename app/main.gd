@@ -8,14 +8,15 @@ var utils = preload("res://common/utils.gd")
 @onready var deck:Array = utils.create_trump_deck()
 var game_deck_origin:Array
 var game_deck_current:Array
-var obtain_cards:Array = []
-var obtain_cards_opponent:Array = []
 var revealing_cards_index:Array = []
 
 const FIELD_CARD_LIMIT = 20
 
 
 func start_game() -> void:
+	# ゲーム情報を表示
+	$GameInfo.set_info();
+	
 	# ゲームに使用するカードを決定する
 	game_deck_origin = utils.setup_game_deck(deck)
 	game_deck_current = game_deck_origin.duplicate()
@@ -39,7 +40,7 @@ func set_cards() -> void:
 
 func restart_game() -> void:
 	# 初期化が必要なデータの対応
-	obtain_cards = []
+	Global.obtain_cards = []
 	
 	# 場のカードインスタンスを削除
 	for c in $Field.get_children():
@@ -74,11 +75,13 @@ func _on_check_timer_timeout() -> void:
 		$Field.get_child(index_1).hide_card()
 		
 		# 自分の手札に加える
-		obtain_cards.push_back(target_card_0)
-		obtain_cards.push_back(target_card_1)
+		Global.obtain_cards.push_back(target_card_0)
+		Global.obtain_cards.push_back(target_card_1)
+		$GameInfo.get_cards(target_card_0, target_card_1)
 		
 		# 終了判定
-		if obtain_cards.size() == FIELD_CARD_LIMIT:
+		if Global.obtain_cards.size() == 4: #FIELD_CARD_LIMIT:
+			$GameInfo.end_game()
 			$Result.show_result()
 	else: 
 		# 一致していなければ元に戻す
