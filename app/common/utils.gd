@@ -1,3 +1,5 @@
+const FIELD_CARD_LIMIT = 20
+
 enum SUIT { SPADE, HEART, DIAMOND, CLUB } 
 
 # トランプを一組作成する
@@ -10,7 +12,7 @@ static func create_trump_deck() -> Array:
 				"number": i+1
 			})
 	return deck
-	
+
 
 # ゲームに使用するデッキを設定する
 static func setup_game_deck(deck:Array) -> Array:
@@ -18,7 +20,7 @@ static func setup_game_deck(deck:Array) -> Array:
 	var game_deck = []
 	
 	tramp_deck.shuffle()
-	for i in range(0, 10):
+	for i in range(0, FIELD_CARD_LIMIT / 2):
 		# 1枚カードをピックアップする
 		var target_card = tramp_deck.pop_front()
 		game_deck.push_back(target_card)
@@ -33,3 +35,11 @@ static func setup_game_deck(deck:Array) -> Array:
 	
 	game_deck.shuffle()
 	return game_deck
+
+
+# 配列内で最初に条件に一致した要素を削除
+static func remove_element_if_condition_matches(target_array:Array, value)->void:
+	for i in range(target_array.size()):
+		if target_array[i] == value:
+			target_array.remove_at(i)
+			break

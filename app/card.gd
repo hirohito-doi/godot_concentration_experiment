@@ -24,7 +24,7 @@ func set_for_hand(new_number:int, new_suit:String) -> void:
 	
 	$Face/Number.text = str(number)
 	$Face/Suit.text = suit
-	
+
 
 func undo_card() -> void:
 	$AnimationPlayer.play("bad")
@@ -36,14 +36,19 @@ func hide_card() -> void:
 	$ClickableArea.visible = false
 
 
-func _on_clickable_area_pressed() -> void:
-	if !Global.can_control:
-		return
-	
-	Global.can_control = false
-	# カードをめくる
+# カードをめくる
+# 対戦相手が実行する場合もあるのでカードをクリックした際の処理とは分ける
+func reverse_card() -> void:
 	$ClickableArea.disabled = true
 	$AnimationPlayer.play("reverse")
+
+
+# カードクリック時に実行
+func _on_clickable_area_pressed() -> void:
+	if !Global.can_control or !Global.current_turn:
+		return
+	
+	reverse_card()
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
