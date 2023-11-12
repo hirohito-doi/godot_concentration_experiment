@@ -25,17 +25,18 @@ grow_vertical = 0
 [node name="CardArea" type="HBoxContainer" parent="PlayerInfoContainer"]
 layout_mode = 0
 offset_left = 40.0
-offset_top = -128.0
-offset_right = 150.0
-offset_bottom = -32.0
-theme_override_constants/separation = -50
+offset_top = -88.0
+offset_right = 100.0
+offset_bottom = -8.0
+scale = Vector2(0.84, 0.84)
+theme_override_constants/separation = -35
 
 [node name="NameBackground" type="ColorRect" parent="PlayerInfoContainer"]
 layout_mode = 0
-offset_left = 24.0
-offset_top = -72.0
-offset_right = 96.0
-offset_bottom = -32.0
+offset_left = 16.0
+offset_top = -48.0
+offset_right = 88.0
+offset_bottom = -8.0
 color = Color(0.254902, 0.254902, 0.254902, 0.458824)
 
 [node name="Name" type="Label" parent="PlayerInfoContainer/NameBackground"]
@@ -52,9 +53,10 @@ text = "あなた"
 [node name="Score" type="Label" parent="PlayerInfoContainer"]
 layout_mode = 0
 offset_left = 24.0
-offset_top = -160.0
+offset_top = -120.0
 offset_right = 64.0
-offset_bottom = -137.0
+offset_bottom = -81.0
+theme_override_font_sizes/font_size = 26
 text = "20"
 
 [node name="OpponentInfoContainer" type="Control" parent="."]
@@ -69,23 +71,28 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -136.0
-offset_top = 40.0
-offset_right = -24.0
-offset_bottom = 136.0
+offset_left = -64.0
+offset_top = 48.0
+offset_right = -4.0
+offset_bottom = 128.0
 grow_horizontal = 0
-theme_override_constants/separation = -50
+scale = Vector2(0.8, 0.8)
+theme_override_constants/separation = -35
 
-[node name="Label" type="Label" parent="OpponentInfoContainer"]
+[node name="NameBackground" type="ColorRect" parent="OpponentInfoContainer"]
+offset_left = -80.0
+offset_top = 16.0
+offset_right = -8.0
+offset_bottom = 56.0
+color = Color(0.254902, 0.254902, 0.254902, 0.458824)
+
+[node name="Name" type="Label" parent="OpponentInfoContainer/NameBackground"]
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
+anchors_preset = 15
 anchor_right = 1.0
-offset_left = -96.0
-offset_top = 32.0
-offset_right = -23.0
-offset_bottom = 74.0
-grow_horizontal = 0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_font_sizes/font_size = 28
 text = "Noob"
 
@@ -95,9 +102,10 @@ anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -64.0
-offset_top = 144.0
+offset_top = 112.0
 offset_right = -24.0
-offset_bottom = 170.0
+offset_bottom = 151.0
 grow_horizontal = 0
+theme_override_font_sizes/font_size = 26
 text = "20"
 horizontal_alignment = 2

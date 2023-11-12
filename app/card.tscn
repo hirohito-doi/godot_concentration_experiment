@@ -135,11 +135,11 @@ _data = {
 }
 
 [node name="Card" type="Control"]
-custom_minimum_size = Vector2(80, 100)
+custom_minimum_size = Vector2(50, 70)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 80.0
-offset_bottom = 100.0
+offset_right = 50.0
+offset_bottom = 70.0
 pivot_offset = Vector2(40, 0)
 script = ExtResource("1_14qdi")
 
@@ -168,11 +168,12 @@ grow_vertical = 2
 
 [node name="Number" type="Label" parent="Face"]
 layout_mode = 0
-offset_left = 2.0
-offset_right = 42.0
-offset_bottom = 45.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 44.0
+offset_bottom = 49.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 24
 text = "10"
 
 [node name="Suit" type="Label" parent="Face"]
@@ -182,12 +183,16 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -40.0
-offset_top = -39.0
+offset_left = -43.0
+offset_top = -24.0
+offset_right = -3.0
+offset_bottom = -6.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 9
 text = "1"
+horizontal_alignment = 2
 
 [node name="Back" type="ColorRect" parent="."]
 layout_mode = 1

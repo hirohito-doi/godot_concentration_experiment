@@ -23,6 +23,7 @@ func start_game() -> void:
 	
 	# ゲーム情報を表示
 	$GameInfo.set_info();
+	$FieldBackground.visible = true
 	
 	# ゲームに使用するカードを決定する
 	game_deck_origin = utils.setup_game_deck(deck)
@@ -97,6 +98,7 @@ func _on_check_timer_timeout() -> void:
 		if Global.obtain_cards.size() + Global.obtain_cards_opponent.size() == utils.FIELD_CARD_LIMIT:
 			$ThinkingTimer.stop()
 			$GameInfo.end_game()
+			$FieldBackground.visible = false
 			$Result.show_result()
 	else: 
 		# 一致していなければ元に戻す
@@ -150,8 +152,8 @@ func memory_reversed_card_by_opponent() -> void:
 			return false
 		
 		# 後ろの内容程忘れやすくする
-		# 覚えている確率: 直近のカード約90%、以降20%ずつ減っていく
-		var val = 80 - (count * 20) 
+		# 覚えている確率: 直近のカードが一番高く、以降覚えている確率が減っていく
+		var val = 70 - (count * 20) 
 		count += 1
 		return val > randi_range(0, 100)
 	)
