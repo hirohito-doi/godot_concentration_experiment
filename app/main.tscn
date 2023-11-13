@@ -1,14 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://wb0nc63je6ay"]
+[gd_scene load_steps=5 format=3 uid="uid://wb0nc63je6ay"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_6snme"]
-[ext_resource type="PackedScene" uid="uid://5mn8xxs0vakp" path="res://card.tscn" id="1_f16yg"]
-[ext_resource type="PackedScene" uid="uid://crlcg66sy3nm8" path="res://game_info.tscn" id="3_7b4mj"]
 [ext_resource type="PackedScene" uid="uid://b1aqwhm3dsdwl" path="res://ui/start_menu.tscn" id="3_gbwy1"]
 [ext_resource type="PackedScene" uid="uid://dqxk4n4tk1ftu" path="res://ui/result.tscn" id="4_rhvqd"]
+[ext_resource type="PackedScene" uid="uid://bn3fckikqro1k" path="res://game.tscn" id="5_j6uff"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_6snme")
-card_scene = ExtResource("1_f16yg")
 
 [node name="Background" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -18,73 +16,13 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.454902, 0.611765, 0.317647, 1)
 
-[node name="FieldBackground" type="ColorRect" parent="."]
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -195.0
-offset_top = -175.0
-offset_right = 195.0
-offset_bottom = 175.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(1, 1, 1, 0.392157)
-
-[node name="Fore" type="ColorRect" parent="FieldBackground"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -192.0
-offset_top = -173.0
-offset_right = 193.0
-offset_bottom = 172.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.454902, 0.611765, 0.317647, 1)
-
-[node name="Field" type="GridContainer" parent="."]
-custom_minimum_size = Vector2(310, 310)
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -155.0
-offset_top = -155.0
-offset_right = 155.0
-offset_bottom = 155.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/h_separation = 15
-theme_override_constants/v_separation = 10
-columns = 5
-
-[node name="GameInfo" parent="." instance=ExtResource("3_7b4mj")]
+[node name="Game" parent="." instance=ExtResource("5_j6uff")]
 visible = false
 
 [node name="StartMenu" parent="." instance=ExtResource("3_gbwy1")]
 
 [node name="Result" parent="." instance=ExtResource("4_rhvqd")]
 
-[node name="CheckTimer" type="Timer" parent="."]
-wait_time = 0.5
-one_shot = true
-
-[node name="PutCardTimer" type="Timer" parent="."]
-wait_time = 0.03
-one_shot = true
-
-[node name="ThinkingTimer" type="Timer" parent="."]
-wait_time = 1.5
-
+[connection signal="game_finished" from="Game" to="." method="end_game"]
 [connection signal="start_game" from="StartMenu" to="." method="start_game"]
 [connection signal="restart_game" from="Result" to="." method="restart_game"]
-[connection signal="timeout" from="CheckTimer" to="." method="_on_check_timer_timeout"]
-[connection signal="timeout" from="PutCardTimer" to="." method="set_cards"]
-[connection signal="timeout" from="ThinkingTimer" to="." method="_on_thinking_timer_timeout"]

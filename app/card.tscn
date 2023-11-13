@@ -140,7 +140,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 50.0
 offset_bottom = 70.0
-pivot_offset = Vector2(40, 0)
+pivot_offset = Vector2(25, 0)
 script = ExtResource("1_14qdi")
 
 [node name="Face" type="ColorRect" parent="."]

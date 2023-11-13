@@ -1,0 +1,173 @@
+[gd_scene load_steps=3 format=3 uid="uid://bn3fckikqro1k"]
+
+[ext_resource type="Script" path="res://game.gd" id="1_v3fug"]
+[ext_resource type="PackedScene" uid="uid://5mn8xxs0vakp" path="res://card.tscn" id="2_yusna"]
+
+[node name="Game" type="CanvasLayer"]
+script = ExtResource("1_v3fug")
+card_scene = ExtResource("2_yusna")
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -195.0
+offset_top = -175.0
+offset_right = 195.0
+offset_bottom = 175.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.392157)
+
+[node name="Fore" type="ColorRect" parent="Background"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -192.0
+offset_top = -173.0
+offset_right = 193.0
+offset_bottom = 172.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.470588, 0.603922, 0.360784, 1)
+
+[node name="Field" type="GridContainer" parent="."]
+custom_minimum_size = Vector2(310, 310)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -155.0
+offset_top = -155.0
+offset_right = 155.0
+offset_bottom = 155.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 15
+theme_override_constants/v_separation = 10
+columns = 5
+
+[node name="GameInfo" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CurrentTurnLabel" type="Label" parent="GameInfo"]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 188.0
+offset_bottom = 52.0
+theme_override_font_sizes/font_size = 24
+text = "あなたのターンです"
+
+[node name="PlayerInfoContainer" type="Control" parent="GameInfo"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+
+[node name="CardArea" type="HBoxContainer" parent="GameInfo/PlayerInfoContainer"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = -88.0
+offset_right = 100.0
+offset_bottom = -8.0
+scale = Vector2(0.84, 0.84)
+theme_override_constants/separation = -35
+
+[node name="NameBackground" type="ColorRect" parent="GameInfo/PlayerInfoContainer"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = -48.0
+offset_right = 88.0
+offset_bottom = -8.0
+color = Color(0.254902, 0.254902, 0.254902, 0.458824)
+
+[node name="Name" type="Label" parent="GameInfo/PlayerInfoContainer/NameBackground"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 28
+text = "あなた"
+
+[node name="Score" type="Label" parent="GameInfo/PlayerInfoContainer"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = -120.0
+offset_right = 64.0
+offset_bottom = -81.0
+theme_override_font_sizes/font_size = 26
+text = "20"
+
+[node name="OpponentInfoContainer" type="Control" parent="GameInfo"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+
+[node name="CardArea" type="HBoxContainer" parent="GameInfo/OpponentInfoContainer"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -64.0
+offset_top = 48.0
+offset_right = -4.0
+offset_bottom = 128.0
+grow_horizontal = 0
+scale = Vector2(0.8, 0.8)
+theme_override_constants/separation = -35
+
+[node name="NameBackground" type="ColorRect" parent="GameInfo/OpponentInfoContainer"]
+layout_mode = 0
+offset_left = -80.0
+offset_top = 16.0
+offset_right = -8.0
+offset_bottom = 56.0
+color = Color(0.254902, 0.254902, 0.254902, 0.458824)
+
+[node name="Name" type="Label" parent="GameInfo/OpponentInfoContainer/NameBackground"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 28
+text = "Noob"
+
+[node name="Score" type="Label" parent="GameInfo/OpponentInfoContainer"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -64.0
+offset_top = 112.0
+offset_right = -24.0
+offset_bottom = 151.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 26
+text = "20"
+horizontal_alignment = 2
+
+[node name="CheckTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="ThinkingTimer" type="Timer" parent="."]
+wait_time = 1.5
